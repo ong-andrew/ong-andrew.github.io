@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Chart with Highcharts</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="container" style="width:100%; height:400px;"></div>
+    <div id="checkboxes"></div> <!-- Moved checkboxes below the chart -->
+
+    <script>
+        $(document).ready(function() {
+            // Load CSV data
+            $.get('data.csv', function(data) {
+                const lines = data.split('\n').slice(1); // Skip header
+                const seriesData = {};
+                const websites = new Set(); // To store unique websites
+                
+                lines.forEach(line => {
+                    const [date, website, visitors] = line.split(',');
+                    if (!seriesData[website]) {
+                        seriesData[website] = [];
+                    }
+                    seriesData[website].push([new Date(date).getTime(), parseInt(visitors)]);
+                    websites.add(website); // Add website to the set
+                });
+
+                // Predefined websites to check
+                const preselectedWebsites = ['malaysiakini.com', 'thestar.com.my', 'hmetro.com.my'];
+
+                // Generate checkboxes for each website
+                websites.forEach(website => {
+                    const isChecked = preselectedWebsites.includes(website) ? 'checked' : '';
+                    $('#checkboxes').append(`<label><input type="checkbox" value="${website}" ${isChecked}> ${website}</label>`);
+                });
+
+                // Initialize chart with only visible series
+                const chart = Highcharts.chart('container', {
+                    title: { text: '' },
+                    xAxis: { type: 'datetime' },
+                    yAxis: { title: { text: 'Visitors' } },
+                    series: Object.keys(seriesData).map(website => ({
+                        name: website,
+                        data: seriesData[website],
+                        visible: preselectedWebsites.includes(website) // Set visibility based on preselected websites
+                    })).filter(series => series.visible), // Only include visible series
+                    credits: {
+                        enabled: true, // Enable credits
+                        text: 'Source: similarwebs.com', // Custom text
+                        href: null // Set to null if you don't want it to link anywhere
+                    }
+                });
+
+                // Checkbox event handler
+                $('input[type="checkbox"]').change(function() {
+                    const website = $(this).val();
+                    const series = chart.series.find(s => s.name === website);
+                    if (this.checked) {
+                        if (!series) {
+                            // If the series is not found, it means it was hidden, so we need to add it back
+                            const newSeries = {
+                                name: website,
+                                data: seriesData[website],
+                                visible: true // Set it to visible since the checkbox is checked
+                            };
+                            chart.addSeries(newSeries);
+                        } else {
+                            series.setVisible(true);
+                        }
+                    } else {
+                        if (series) {
+                            // Remove the series from the chart
+                            chart.series.forEach(s => {
+                                if (s.name === website) {
+                                    s.remove(true); // Remove the series and update the legend
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
