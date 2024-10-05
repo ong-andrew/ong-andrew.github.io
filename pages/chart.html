@@ -39,7 +39,10 @@
 
                 // Initialize chart with only visible series
                 const chart = Highcharts.chart('container', {
-                    title: { text: '' },
+                    title: { 
+                        text: 'Website Visitors Over Time', // Added chart title
+                        align: 'left' // Align title to the left
+                    },
                     xAxis: { type: 'datetime' },
                     yAxis: { title: { text: 'Visitors' } },
                     series: Object.keys(seriesData).map(website => ({
@@ -48,9 +51,15 @@
                         visible: preselectedWebsites.includes(website) // Set visibility based on preselected websites
                     })).filter(series => series.visible), // Only include visible series
                     credits: {
-                        enabled: true, // Enable credits
-                        text: 'Source: similarwebs.com', // Custom text
-                        href: null // Set to null if you don't want it to link anywhere
+                        enabled: true, 
+                        text: 'Source: similarwebs.com', 
+                        href: null,
+
+                    }, 
+                    legend: {
+                        align: 'left', 
+                        verticalAlign: 'top', 
+                        layout: 'horizontal' 
                     }
                 });
 
