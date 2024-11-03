@@ -25,7 +25,10 @@
                     if (!seriesData[website]) {
                         seriesData[website] = [];
                     }
-                    seriesData[website].push([new Date(date).getTime(), parseInt(visitors)]);
+                    // Parse the date in DD/MM/YYYY format
+                    const [day, month, year] = date.split('/').map(Number);
+                    const timestamp = new Date(year, month - 1, day).getTime(); // Correctly convert to timestamp
+                    seriesData[website].push([timestamp, parseInt(visitors)]);
                     websites.add(website); // Add website to the set
                 });
 
