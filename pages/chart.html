@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Line Chart with Highcharts</title>
+    <title>Website Visitors Chart</title>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
 </head>
 <body>
     <div id="container" style="width:100%; height:400px;"></div>
-    <div id="checkboxes"></div> <!-- Moved checkboxes below the chart -->
+    <div id="checkbox-container" style="width: 100%; max-width: 300px; height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
 
     <script>
         $(document).ready(function() {
@@ -19,7 +19,7 @@
                 const lines = data.split('\n').slice(1); // Skip header
                 const seriesData = {};
                 const websites = new Set(); // To store unique websites
-                
+
                 lines.forEach(line => {
                     const [date, website, visitors] = line.split(',');
                     if (!seriesData[website]) {
@@ -38,25 +38,25 @@
                 // Generate checkboxes for each website
                 websites.forEach(website => {
                     const isChecked = preselectedWebsites.includes(website) ? 'checked' : '';
-                    $('#checkboxes').append(`<label><input type="checkbox" value="${website}" ${isChecked}> ${website}</label>`);
+                    $('#checkbox-container').append(`<label><input type="checkbox" value="${website}" ${isChecked}> ${website}</label><br>`);
                 });
 
                 // Initialize chart with only visible series
                 const chart = Highcharts.chart('container', {
-                    title: { 
+                    title: {
                         text: 'Website Visitors Over Time', // Added chart title
-                        align: 'left' // Align title to the left
+                        align: 'left'
                     },
                     xAxis: { type: 'datetime' },
                     yAxis: { title: { text: 'Visitors' } },
                     series: Object.keys(seriesData).map(website => ({
                         name: website,
                         data: seriesData[website],
-                        visible: preselectedWebsites.includes(website) // Set visibility based on preselected websites
-                    })).filter(series => series.visible), // Only include visible series
+                        visible: preselectedWebsites.includes(website)
+                    })).filter(series => series.visible),
                     credits: {
-                        enabled: true, 
-                        text: 'Source: similarwebs.com', 
+                        enabled: true,
+                        text: 'Source: similarwebs.com',
                         href: null,
 
                     },
@@ -68,12 +68,12 @@
                             }
                         }
                     },
-        
+
 
                     legend: {
-                        align: 'left', 
-                        verticalAlign: 'top', 
-                        layout: 'horizontal' 
+                        align: 'left',
+                        verticalAlign: 'top',
+                        layout: 'horizontal'
                     }
                 });
 
@@ -81,26 +81,20 @@
                 $('input[type="checkbox"]').change(function() {
                     const website = $(this).val();
                     const series = chart.series.find(s => s.name === website);
+
                     if (this.checked) {
                         if (!series) {
-                            // If the series is not found, it means it was hidden, so we need to add it back
-                            const newSeries = {
+                            chart.addSeries({
                                 name: website,
                                 data: seriesData[website],
-                                visible: true // Set it to visible since the checkbox is checked
-                            };
-                            chart.addSeries(newSeries);
+                                visible: true
+                            });
                         } else {
                             series.setVisible(true);
                         }
                     } else {
                         if (series) {
-                            // Remove the series from the chart
-                            chart.series.forEach(s => {
-                                if (s.name === website) {
-                                    s.remove(true); // Remove the series and update the legend
-                                }
-                            });
+                            series.setVisible(false);
                         }
                     }
                 });

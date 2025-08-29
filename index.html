@@ -1,112 +1,101 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Andrew's website</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home">JD</a>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Andrew Ong</h1>
+                <p class="fade-in">A former journalist turned product thinker, passionate about data, storytelling, and the environment.</p>
+                <a href="#projects" class="cta-button fade-in">View My Work</a>
+            </div>
+        </section>
 
-							<!-- Header -->
-								<header id="header">
-									<a class="logo"><strong>PLACEHOLDER</strong></a>
-									<ul class="icons">
-										<li><a href="https://twitter.com/andrew_ongkh" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="https://www.linkedin.com/in/andrew-toman" class="icon brands fa-linkedin-in"><span class="label">Snapchat</span></a></li>
-										<li><a href="https://github.com/ong-andrew" class="icon brands fa-github"><span class="label">Snapchat</span></a></li>
-									</ul>
-								</header>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://via.placeholder.com/300" alt="Profile Picture">
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            Hi, I’m Andrew. I believe journalism matters because it holds power to account — but today, ad dollars are dwindling and people’s attention is harder than ever to keep. That’s why my mission is to help newsrooms adapt, using technology not for its own sake but to deepen relationships with audiences and stay relevant to the communities they serve.
+                        </p>
+                        <p>
+                            As a father, I often think about the future we’re shaping, and that drives me to keep learning and improving. Whether it’s experimenting with new tools, rethinking how stories are told, or streamlining newsroom workflows, I’m always looking for ways to make journalism more sustainable and meaningful in a changing world.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-							<!-- Content -->
-							<section>
-								<header class="main">
-									<h1>Generic</h1>
-								</header>
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="project-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <h3>Traffic to Malaysian news websites</h3>
+                        <p>An estimate of web traffic to major Malaysian news organisations.</p>
+                        <a href="pages/chart.html" class="project-button">View Project</a>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <h3>Project Two</h3>
+                        <p>A brief description of the second project. Explain the technology used and the problem it solves.</p>
+                        <a href="#" class="project-button">View Project</a>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <h3>Project Three</h3>
+                        <p>A brief description of the third project. Explain the technology used and the problem it solves.</p>
+                        <a href="#" class="project-button">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-								<p>Lorem ipsum</p>
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>I'm currently open to new opportunities. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                    <a href="#" class="contact-link">LinkedIn</a>
+                    <a href="#" class="contact-link">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-							</section>
-						</div>
-					</div>
+    <footer>
+        <p>&copy; 2025 John Doe. All rights reserved.</p>
+    </footer>
 
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="generic.html">Generic</a></li>
-										<li><a href="elements.html">Elements</a></li>
-										<li>
-											<span class="opener">Submenu</span>
-											<ul>
-												<li><a href="pages/chart.html">News website traffic chart</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
-
-							<!-- CONTACT ME -->
-							<section id="contact-form">
-								<header class="major">
-									<h2>Let's get in touch!</h2>
-								</header>
-								<p>Reach out through my social links above or send me an email below:</p>
-								<form method="POST" action="https://formspree.io/f/mdknqvbk">
-									<label for="email">Email:</label>
-									<input type="email" name="email" id="email" placeholder="Enter your email" required />
-									
-									<label for="message">Message:</label>
-									<textarea name="message" id="message" placeholder="Enter your message" required></textarea>
-									
-									<button type="submit" style="margin-top: 10px;">Submit</button>
-								</form>
-							</section>
-
-							<!-- Footer -->
-							<footer id="footer">
-								<p class="copyright">&copy; 2024 Andrew Ong. All rights reserved. This website is created for personal use. Images and assets are sourced from <a href="https://unsplash.com">Unsplash</a>. Design by <a href="https://html5up.net">HTML5 UP</a>.</p>
-							</footer>
-
-						</div>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    <script src="script.js"></script>
+</body>
 </html>
